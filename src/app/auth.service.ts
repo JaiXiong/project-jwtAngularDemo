@@ -40,8 +40,23 @@ export class AuthService {
     localStorage.setItem(this.JWT_TOKEN, jwt); //JSON.stringify(tokens));
   }
 
+  getCurrentUser(): Observable<any> {
+    const token = localStorage.getItem(this.JWT_TOKEN);
+    return this.http.get('http://localhost:3001/api/login/currentuser');
+    // , {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`
+    //   }
+    // });
+  }
+
+  isLoggedIn() {
+    return this.isAuthicatedSubject.value;
+  }
+
   logout() {
     localStorage.removeItem(this.JWT_TOKEN);
     this.isAuthicatedSubject.next(false);
+    window.location.reload();
   }
 }

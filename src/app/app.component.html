@@ -1,7 +1,14 @@
 <div>
-  <form>
+  <!-- <form>
     <input type="text" [(ngModel)]="username" name="name" placeholder="Enter your name" />
     <input type="text" [(ngModel)]="pw" name="email" placeholder="Enter your pw" />
     <button (click)="submit()">Submit</button>
   </form>
+  <pre>
+    <code>
+      {{currentUser | json}}
+    </code>
+  </pre>
+  <button (click)="logout()">Log out</button> -->
+  <router-outlet></router-outlet>
 </div>

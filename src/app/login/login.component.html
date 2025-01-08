@@ -1,0 +1,13 @@
+<div>
+    <form>
+      <input type="text" [(ngModel)]="email" name="email" placeholder="Enter your email" />
+      <input type="text" [(ngModel)]="pw" name="email" placeholder="Enter your pw" />
+      <button (click)="submit()">Submit</button>
+    </form>
+    <pre>
+      <code>
+        {{currentUser | json}}
+      </code>
+    </pre>
+    <button (click)="logout()">Log out</button>
+  </div>
