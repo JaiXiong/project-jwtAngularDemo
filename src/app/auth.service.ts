@@ -51,7 +51,8 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return this.isAuthicatedSubject.value;
+    //return this.isAuthicatedSubject.value;
+    return !!localStorage.getItem(this.JWT_TOKEN);
   }
 
   logout() {
