@@ -25,9 +25,9 @@ export class LoginComponent {
 
 submit() {
     this.authService.login({ email: this.email, password: this.pw }).pipe(
-        switchMap((response: any) => {
-          console.log('Login successful', response.token);
-          return this.authService.getCurrentUser();
+      switchMap((response: any) => {
+        console.log('Login successful', response.token);
+        return this.authService.getCurrentUser();
       })
     ).subscribe({
       next: (response: any) => {

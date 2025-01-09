@@ -23,8 +23,14 @@ routerService = inject(Router);
 constructor() {
   this.authService.getCurrentUser().subscribe(response => {
     this.currentUser = response;
-  }
-  );
+  });
+  //this.currentUser = this.authService.getCurrentUser();
+}
+refreshToken() {
+  this.authService.refreshToken();//.subscribe((response: any) => {
+    //onsole.log('Refresh token response:', response);
+  //}
+  //);
 }
 
 logout() {
