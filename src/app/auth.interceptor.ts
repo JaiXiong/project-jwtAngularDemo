@@ -2,6 +2,11 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   console.log('Interceptor running');
+  // Skip auth for login/refresh endpoints
+  // if (req.url.includes('refreshtoken')) {
+  //   return next(req);
+  // }
+
   const jwtToken = getJwtToken();
   console.log('Token from storage:', jwtToken);
 
@@ -11,6 +16,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         Authorization: `Bearer ${jwtToken}`,
       },
     });
+    
     console.log('Request headers:', cloned.headers.get('Authorization'));
     return next(cloned);
   }
@@ -18,13 +24,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req);
 };
 
-function getJwtToken() {
-  const tokens = localStorage.getItem('JWT_TOKEN');
-  if (!tokens) {
-    return;
+function getJwtToken(): string | null {
+  const token = localStorage.getItem('JWT_TOKEN');
+  if (!token) {
+    return null;
   }
-  var token = JSON.parse(tokens).token;
+  //var token = JSON.parse(tokens).token;
   console.log('Retrieved token:', token);
   return token;
-  //return localStorage.getItem('JWT_TOKEN');
 }

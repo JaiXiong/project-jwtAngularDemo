@@ -27,10 +27,9 @@ constructor() {
   //this.currentUser = this.authService.getCurrentUser();
 }
 refreshToken() {
-  this.authService.refreshToken();//.subscribe((response: any) => {
-    //onsole.log('Refresh token response:', response);
-  //}
-  //);
+  this.authService.refreshToken().subscribe((response) => {
+    console.log('Refresh token response:', response);
+  });
 }
 
 logout() {
